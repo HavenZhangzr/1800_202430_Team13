@@ -5,10 +5,10 @@ This is a browser based platform which allows job-seekers and employers to match
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Szymon
-* Haven
-* Kavin
-
+* Hi my name is Haven.
+* ...
+* ...
+	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
 * HTML, CSS, JavaScript
