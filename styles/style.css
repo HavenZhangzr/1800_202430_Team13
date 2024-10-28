@@ -1,1 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap');
+body {
+    font-family: 'Satoshi', 'Open Sans',sans-serif;
+}
+.card {
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
