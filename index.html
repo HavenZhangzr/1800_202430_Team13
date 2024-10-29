@@ -47,7 +47,7 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./images/tailwindLogo.png" height="36">
@@ -57,28 +57,61 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Find Positions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Assessment History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Practice</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Trending</a>
-                    </li>
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#">Settings</a>
-                    </li>
-                </ul>
-            </div>
+        <style>
+            .topnav {
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+            }
+
+            .topnav #myLinks {
+            display: none;
+            }
+
+            .topnav a {
+            float: left;
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+            .topnav a.icon {
+            float: right;
+            }
+
+            .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+            .active {
+            background-color: #04AA6D;
+            color: white;
+            }
+        </style>
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+        <div id="myLinks">
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        </div>
+
+        <script>
+            function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+            }
+        </script>
         </div>
     </nav>
 
@@ -86,7 +119,7 @@
         <img class="d-block mx-auto mb-4" src="./images/tailwindLogo.png" alt="" width="72" height="57">
         <h1 class="display-5 fw-bold text-body-emphasis">Tailwind</h1>
         <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">No more guessing. Apply to the right positions,<br>make more oppertunities, learn from
+            <p class="lead mb-4">No more guessing. Apply to the right positions,<br>make more opportunities, learn from
                 experience.<br><br>Start now</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Signup</button>
