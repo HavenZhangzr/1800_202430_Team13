@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +23,9 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>
 
-    <!-------------------------------------------------------->
+    <!-- ------------------------------------------------------>
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
-    <!-------------------------------------------------------->
+    <!-- ---------------------------------------------------- -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -34,42 +37,48 @@
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 
 </head>
 
 <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
-    <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
-
-    <!-- the body of your page goes here -->
-    <div class="container">
-        <h1>Let's Login!</h1>
+    <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+        id="modalSheet">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header border-bottom-0">
+                    <h1 class="modal-title fs-5">Choose Account Type</h1>
+                </div>
+                <div class="modal-body py-0">
+                    <p>Select wheather you are a job-seeker, or a recruiter. <br>
+                        You cannot change this later!
+                    </p>
+                </div>
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                    <button type="button" class="btn btn-lg btn-primary" id="jobSeekerBtn">Job Seeker</button>
+                    <button type="button" class="btn btn-lg btn-secondary" id="recruiterBtn">Recruiter</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">
-        <button class="btn btn-primary" type="button" disabled="">
-            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Loading...</span>
-        </button>
-    </div>
-    <!-- stuff -->
-
-    <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/authentication.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script>
+        document.getElementById("jobSeekerBtn").addEventListener("click", function() {
+            window.location.href = "main.html";
+        });
+
+        document.getElementById("recruiterBtn").addEventListener("click", function() {
+            window.location.href = "main.html";
+        });
+    </script>
+    <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
