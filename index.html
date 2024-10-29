@@ -47,7 +47,7 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./images/tailwindLogo.png" height="36">
@@ -57,61 +57,28 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <style>
-            .topnav {
-            overflow: hidden;
-            background-color: #333;
-            position: relative;
-            }
-
-            .topnav #myLinks {
-            display: none;
-            }
-
-            .topnav a {
-            float: left;
-            color: white;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-            .topnav a.icon {
-            float: right;
-            }
-
-            .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-            }
-
-            .active {
-            background-color: #04AA6D;
-            color: white;
-            }
-        </style>
-        <!-- Top Navigation Menu -->
-        <div class="topnav">
-        <div id="myLinks">
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-        </div>
-
-        <script>
-            function myFunction() {
-            var x = document.getElementById("myLinks");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-            }
-        </script>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Find Positions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Assessment History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Practice</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trending</a>
+                    </li>
+                    <li class="nav-item"></li>
+                    <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
