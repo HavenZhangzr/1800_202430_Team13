@@ -45,33 +45,28 @@
     <!-- Stuff for body goes here -->
     <div class="container mt-4">
         <h3>Start Your Assessment Journey</h3>
+        
         <div class="container d-flex flex-column align-items-center justify-content-center mt-4">
             <div id="assessmentList"> <!--Replace with template!!!-->
-                <div class="card w-75 mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary-emphasis fs-5">Responsive Web Design</h5>
-                        <p class="card-text text-secondary-emphasis fs-6">This test evaluates users' ability to design
-                            responsive web pages
-                            that function well on different devices, including the use of CSS media queries.</p>
-                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Advanced
-                            Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
-                        <a href="#" class="btn btn-success">Start Now</a>
-                    </div>
-                </div>
-                <div class="card w-75 mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary-emphasis fs-5">Frontend Framework: React Test</h5>
-                        <p class="card-text text-secondary-emphasis fs-6">This assessment tests users' understanding of
-                            the React framework,
-                            including components, state management, and lifecycle methods.</p>
-                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Intermediate,
-                            Duration: 45 minutes, Success Rate:96.03%</p>
-                        <a href="#" class="btn btn-success">Start Now</a>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>
+
+
+
+
+    <template id="assessmentTemplate">
+        <div class="card w-75 mb-3" >
+            <div class="card-body">
+                <h5 class="card-title text-primary-emphasis fs-5 card-title">Beautiful title</h5>
+                <p class="card-text text-secondary-emphasis fs-6 card-description">Amazing and in-depth description!</p>
+                <p class="card-text text-secondary card-details" style="font-size: 13px;">Difficulty Level: Advanced
+                    Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
+                <a href="#" class="btn btn-success">Start Now</a>
+            </div>
+        </div>
+    </template>
 
     <!-- Footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -84,6 +79,7 @@
     <!-- <script src="./scripts/script.js"></script> -->
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/assessmentsList.js"></script>
 
 </body>
 
