@@ -16,28 +16,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-- Other libraries go here -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Link to styles of your own -->
-    <style>
-        .firstCard {
-            background-image: url("./images/firstCard.png");
-            background-size: cover;
-        }
-
-        .secondCard {
-            background-image: url("https://images.unsplash.com/photo-1565383690591-1ee1b6582cef?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-            background-size: cover;
-        }
-
-        .thirdCard {
-            background-image: url("./images/thirdCard.png");
-            background-size: cover;
-        }
-    </style>
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
@@ -46,42 +37,12 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="./images/tailwindLogo.png" height="36">
-                TailWind
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Find Positions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Assessment History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Practice</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Trending</a>
-                    </li>
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="#">Settings</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
 
+    <!-- Navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- Stuff for body goes here -->
     <div class="container mt-4">
         <h3>Start Your Assessment Journey</h3>
         <div class="container d-flex flex-column align-items-center justify-content-center mt-4">
@@ -89,35 +50,31 @@
                 <div class="card w-75 mb-3">
                     <div class="card-body">
                         <h5 class="card-title text-primary-emphasis fs-5">Responsive Web Design</h5>
-                        <p class="card-text text-secondary-emphasis fs-6">This test evaluates users' ability to design responsive web pages 
+                        <p class="card-text text-secondary-emphasis fs-6">This test evaluates users' ability to design
+                            responsive web pages
                             that function well on different devices, including the use of CSS media queries.</p>
-                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Advanced Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
+                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Advanced
+                            Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
                         <a href="#" class="btn btn-success">Start Now</a>
                     </div>
                 </div>
                 <div class="card w-75 mb-3">
                     <div class="card-body">
                         <h5 class="card-title text-primary-emphasis fs-5">Frontend Framework: React Test</h5>
-                        <p class="card-text text-secondary-emphasis fs-6">This assessment tests users' understanding of the React framework, 
+                        <p class="card-text text-secondary-emphasis fs-6">This assessment tests users' understanding of
+                            the React framework,
                             including components, state management, and lifecycle methods.</p>
-                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Intermediate, Duration: 45 minutes, Success Rate:96.03%</p>
+                        <p class="card-text text-secondary" style="font-size: 13px;">Difficulty Level: Intermediate,
+                            Duration: 45 minutes, Success Rate:96.03%</p>
                         <a href="#" class="btn btn-success">Start Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top px-3 mx-4">
-            <div class="col-md-4 d-flex align-items-center">
-                <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Tailwind</span>
-            </div>
-
-        </footer>
-    </div>
-
+    <!-- Footer goes here-->
+    <nav id="footerPlaceholder"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -125,6 +82,8 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebaseAPI.js"></script>
+    <script src="./scripts/skeleton.js"></script>
 
 </body>
 
