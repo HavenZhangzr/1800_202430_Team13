@@ -59,7 +59,7 @@ function loadProfileData() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is logged in');
-            const userDocRef = db.collection("profile").doc(user.uid);
+            const userDocRef = db.collection("profiles").doc(user.uid);
             userDocRef.get().then(function(doc) {
                 if (doc.exists) {
                     // If the document exists, load the data and display it on the page
@@ -72,6 +72,7 @@ function loadProfileData() {
                     document.getElementById("phoneNumber").value = profileData.phoneNumber || '';
                     document.getElementById("country").value = profileData.country || '';
                     document.getElementById("address").value = profileData.address || '';
+                    document.getElementById("address2").value = profileData.address2 || '';
                     document.getElementById("city").value = profileData.city || '';
                     document.getElementById("zip").value = profileData.zip || '';
 
@@ -104,7 +105,7 @@ function saveProfileData(event) {
     // Check if the user is logged in
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            const userDocRef = db.collection("profile").doc(user.uid);
+            const userDocRef = db.collection("profiles").doc(user.uid);
 
             // Check if the document exists
             userDocRef.get().then(function(doc) {
@@ -119,6 +120,7 @@ function saveProfileData(event) {
                         phoneNumber: document.getElementById("phoneNumber").value,
                         country: document.getElementById("country").value,
                         address: document.getElementById("address").value,
+                        address2: document.getElementById("address2").value,
                         city: document.getElementById("city").value,
                         zip: document.getElementById("zip").value
                     })
@@ -142,6 +144,7 @@ function saveProfileData(event) {
                         phoneNumber: document.getElementById("phoneNumber").value,
                         country: document.getElementById("country").value,
                         address: document.getElementById("address").value,
+                        address2: document.getElementById("address2").value,
                         city: document.getElementById("city").value,
                         zip: document.getElementById("zip").value
                     })
