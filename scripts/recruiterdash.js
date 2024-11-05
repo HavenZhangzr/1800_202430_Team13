@@ -17,6 +17,7 @@ const db = firebase.firestore();
 
 // Reference to the form
 const form = document.getElementById('assessmentsubmission');
+const jobinput = document.getElementById('hardcoded');
 
 // Add event listener to the form
 form.addEventListener('submit', (e) => {
@@ -48,4 +49,20 @@ form.addEventListener('submit', (e) => {
     });
 });
 
-// testing 
+jobinput.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    const userinput = jobinput.elements.hardcodedquestion.value;
+
+    db.collection('useranswers').add({
+        answer: userinput, 
+    })
+    .then(() => {
+        console.log("Data successfully submitted!");
+        jobinput.reset(); 
+    })
+    .catch((error) => {
+        console.error("Error submitting data: ", error);
+    });
+});
