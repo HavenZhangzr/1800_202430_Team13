@@ -1,20 +1,3 @@
-
-//Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBgDVV2SabbK67Bmd81zB5xpGwpBEoWTuo",
-  authDomain: "comp1800-bby13-bc8f5.firebaseapp.com",
-  projectId: "comp1800-bby13-bc8f5",
-  storageBucket: "comp1800-bby13-bc8f5.firebasestorage.app",
-  messagingSenderId: "692716861774",
-  appId: "1:692716861774:web:ca16b35a90d4ad37a6061f"
-};
-
-// Initialize Firebase
-
-const app = firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-
 // Reference to the form
 const form = document.getElementById('assessmentsubmission');
 const jobinput = document.getElementById('hardcoded');
