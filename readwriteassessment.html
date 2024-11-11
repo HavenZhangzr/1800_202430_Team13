@@ -25,27 +25,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-- Other libraries go here -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
 
     <!-- Link to styles of your own -->
-    <style>
-        .firstCard {
-            background-image: url("./images/firstCard.png");
-            background-size: cover;
-        }
-
-        .secondCard {
-            background-image: url("https://images.unsplash.com/photo-1565383690591-1ee1b6582cef?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-            background-size: cover;
-        }
-
-        .thirdCard {
-            background-image: url("./images/thirdCard.png");
-            background-size: cover;
-        }
-
-    </style>
     <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 
 </head>
@@ -58,42 +41,55 @@
     <!-- Navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-    <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-1 fw-bold text-body-emphasis text-secondary">Your Dashboard</h1>
-        <div class="col-lg-6 mx-auto">
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                
-        <div class="card">
-            <div class="card-header">
-                Featured Assessment
-            </div>
-            <div class="card-body">
-            
-                <form id="hardcoded">
-                    <div class="form-group">
-                        <label for="inputAddress2">How are you?</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Your answer..." name="hardcodedquestion">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button> 
-                </form>
-                
-            </div>
-        </div>
-
-                
-            </div>
-
-        </div>
-    </div>
-
-    
-    
-    <!-- Footer goes here-->
-    <nav id="footerPlaceholder"></nav>
 
     <!------------------------------>
     <!-- Stuff for body goes here -->
+    <div class="container mt-4">
+        <h2>Responsive Web Design - Assessment</h2>
+        <form class="mt-4">
+            <div id ="multipleChoiceQuestions">
+                <h4>Multiple Choice Questions</h4>
+                <template id="multipleChoiceTemp">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" value="A">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" value="B">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" value="C">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" value="D">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <label class="mul_QuestionsDocID" style="display: none;"></label>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div id ="shortAnswerQuestions">
+                <h4>Short Answer Questions</h4>
+                <template id="shortAnswerTemp">
+                    <div class="form-group mb-3">
+                        <label for="sa1"></label>
+                        <textarea class="form-control" rows="3"></textarea>
+                        <label class="short_QuestionsDocID" style="display: none;"></label>
+                    </div>
+                </template>
+            </div>
+            <button type="submit" class="btn btn-success mt-2">Submit</button>
+        </form>
+    </div>
 
+    <!-- Footer goes here-->
+    <nav id="footerPlaceholder"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -101,12 +97,13 @@
 
     <!-- Link to scripts of your own. -->
     <!-- <script src="./scripts/script.js"></script> -->
-    
+
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/recruiterdash.js"></script>
-    
+    <!-- <script src="./scripts/recruiterdash.js"></script> -->
+    <script src="./scripts/assessment_form.js"></script>
+
 </body>
 
 </html>
