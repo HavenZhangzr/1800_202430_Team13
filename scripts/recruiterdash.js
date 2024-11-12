@@ -1,6 +1,11 @@
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { db } from './firebaseAPI.js';
+
+
 // Reference to the form
 const form = document.getElementById('assessmentsubmission');
 const jobinput = document.getElementById('hardcoded');
+
 
 // Add event listener to the form
 form.addEventListener('submit', (e) => {
@@ -15,7 +20,7 @@ form.addEventListener('submit', (e) => {
     const ends = form.ends.value;
 
     // Add data to Firestore
-    db.collection('assessments').add({
+    db.collection('recruiterPostedQuestions').add({
         role: role,
         company: company,
         team: team,
