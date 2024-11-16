@@ -1,6 +1,6 @@
 /* New Color Palette:
 * body background-color (Light Blue): #F7F8FD
-* font color (Primary - White): #f0f0f0 
+* font color (Primary - White): #fff
 * font color (Primary - Dark Green): #2b8e44
 * font color (Primary - Dark Grayish Blue): #2e3d49                          （close to black）
 * font color (Secondary - Medium Cool Gray): #676b6e
@@ -33,10 +33,10 @@ body, .navbar-brand {
     margin-right: 8px;
 }
 .nav-item a {
-    color: #f0f0f0 !important;
+    color: #fff !important;
 }
 .title {
-    color: #f0f0f0 !important;
+    color: #fff !important;
     font-weight: 500;
     font-size: 1.2rem;
 }
@@ -44,7 +44,7 @@ body, .navbar-brand {
     background-color: #2b8e44 !important;
 }
 .btn-primary {
-    color: #f0f0f0;
+    color: #fff;
     background-color: #2b8e44;
     border: none;
     transition: background-color 0.3s ease;
@@ -59,13 +59,13 @@ body, .navbar-brand {
     transition: background-color 0.3s ease;
 }
 .btn-primary-recruiter {
-    color: #f0f0f0;
+    color: #fff;
     background-color: #005f93;
     border: none;
     transition: background-color 0.3s ease;
 }
 .btn-primary-recruiter:hover {
-    color: #f0f0f0;
+    color: #fff;
     background-color: #0077b6;
 }
 .btn-outline-secondary {
@@ -76,7 +76,7 @@ body, .navbar-brand {
 .btn-outline-secondary:hover {
     background-color: #55a630;
     border: 2px solid #55a630;
-    color: #f0f0f0;
+    color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 #signUpBtn, #loginBtn {
