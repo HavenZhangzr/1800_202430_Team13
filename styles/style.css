@@ -1,6 +1,23 @@
+/* New Color Palette:
+* body background-color (Light Blue): #F7F8FD
+* font color (Primary - White): #f0f0f0 
+* font color (Primary - Dark Green): #2b8e44
+* font color (Primary - Dark Grayish Blue): #2e3d49                          （close to black）
+* font color (Secondary - Medium Cool Gray): #676b6e
+* button background-color (Primary - Dark Green): #2b8e44
+* button background-color (Secondary - Light Green): #55a630
+* button background-color (Light gray): #f8f9fa                              used for Cancel,Logout,Reset button, etc.
+* button background-color for Recruiter (Primary - Deep Blue): #005f93       for distinguishing Recruiters if needed
+* button background-color for Recruiter (Secondary - Medium Blue): #0077b6   for distinguishing Recruiters if needed
+*/
+
+
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap');
-body {
+@import url('https://fonts.googleapis.com/css2?family=https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Monsieur+La+Doulaise&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body, .navbar-brand {
     font-family: 'Satoshi', 'Open Sans',sans-serif;
+    background-color: #F7F8FD;
 }
 .card {
     transition: background-color 0.3s, box-shadow 0.3s;
@@ -8,4 +25,77 @@ body {
 .card:hover {
     background-color: rgba(0, 123, 255, 0.1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.navbar{
+    height: 40px;
+}
+.navbar-brand {
+    margin-right: 8px;
+}
+.nav-item a {
+    color: #f0f0f0 !important;
+}
+.title {
+    color: #f0f0f0 !important;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+.navbar-light {
+    background-color: #2b8e44 !important;
+}
+.btn-primary {
+    color: #f0f0f0;
+    background-color: #2b8e44;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #4aa619;
+}
+.btn-secondary {
+    color: #2b8e44;
+    background-color: #f8f9fa;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.btn-primary-recruiter {
+    color: #f0f0f0;
+    background-color: #005f93;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.btn-primary-recruiter:hover {
+    color: #f0f0f0;
+    background-color: #0077b6;
+}
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #55a630;
+    border: 2px solid #55a630;
+}
+.btn-outline-secondary:hover {
+    background-color: #55a630;
+    border: 2px solid #55a630;
+    color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#signUpBtn, #loginBtn {
+    font-size: 15px;
+    width: 120px;
+}
+.rounded-lg {
+    border-radius: 12px;
+}
+.display-5 {
+    font-size: 78px;
+    line-height: 1.4;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #2e3d49 !important;
+}
+.lead {
+    font-size: 18px;
+    font-weight:lighter;
+    color: #676b6e;
 }
