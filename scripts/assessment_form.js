@@ -132,6 +132,7 @@ function submitAssessment(e) {
             })
                 .then(() => {
                     console.log("Answers successfully saved!");
+                    window.location.href = "assessment_completed.html";
                 })
                 .catch(error => {
                     console.error("Error saving answers: ", error);
