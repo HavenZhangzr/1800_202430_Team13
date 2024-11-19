@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TailWind</title>
+    <meta name="comp1800 template" content="TailWind">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Other libraries go here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+
+<body>
+
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+
+
+    <!-- Navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+    <!-- Stuff for body goes here -->
+    <div class="container mt-4">
+        <h3>Start Your Assessment Journey</h3>
+        
+        <div class="container d-flex flex-column align-items-center justify-content-center mt-4">
+            <div id="assessmentList"> <!--Replace with template!!!-->
+               
+            </div>
+        </div>
+    </div>
+
+    <template id="assessmentTemplate">
+        <div class="card w-75 mb-3 rounded-lg" >
+            <div class="card-body">
+                <h5 class="card-title text-primary-emphasis fs-5 card-title">Beautiful title</h5>
+                <p class="card-text text-secondary-emphasis fs-6 card-description">Amazing and in-depth description!</p>
+                <p class="card-text text-secondary card-details" style="font-size: 13px;">Difficulty Level: Advanced
+                    Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
+                <a href="#" class="btn btn-success" onclick="saveAssesmentDocumentIDAndRedirect()">Start Now</a>
+            </div>
+        </div>
+    </template>
+
+    <!-- Footer goes here-->
+    <nav id="footerPlaceholder"></nav>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebaseAPI.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/jobPostings.js"></script>
+
+</body>
+
+</html>

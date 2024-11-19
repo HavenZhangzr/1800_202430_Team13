@@ -6,9 +6,9 @@ function displayCardsDynamically(collection) {
             // var i = 1;  //Optional: if you want to have a unique ID
             allAssessments.forEach(doc => { //iterate thru each doc
                 var assessmentDocID = doc.id;
-                var title = doc.data().title;
+                var title = doc.data().role;
                 var description = doc.data().description;
-                var details = "Difficulty: " + doc.data().difficulty +"/10" + "<br>Time: " + doc.data().duration + " minutes" + "<br>" + "Success Rate: " + doc.data().successRate + "%";
+                var details = "Company: " + doc.data().company + "<br>Role: " + doc.data().role + "<br>Team: " + doc.data().team + "<br>Description: " + doc.data().description;
                 
                 // var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
@@ -17,7 +17,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-description').innerHTML = description;
                 newcard.querySelector('.card-details').innerHTML = details;
-                newcard.querySelector('a').href = "readwriteassessment.html?docID=" + assessmentDocID + "&title=" + title;
+                newcard.querySelector('a').href = "jobApply.html?docID=" + assessmentDocID + "&title=" + title;
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);

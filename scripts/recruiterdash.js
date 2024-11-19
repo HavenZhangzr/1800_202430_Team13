@@ -39,12 +39,21 @@ form.addEventListener("submit", (e) => {
             db.collection("assessments").doc(assessmentId).collection("questions").add({
                 question: questionText,
                 answers: answers,
-                correct: correct
+                correct: correct, 
+                questionType: "multiple-choice",
+                isMultipleChoice: true
             });
         });
+
+        // clear form fields
+        form.reset();
+        questionsContainer.innerHTML = '';
+
+        alert("Assessment created successfully!");
     });
 
-    alert("Your assessment has been submitted!");
+    
+
 });
 
 // Add event listener to the "Add Question" button
