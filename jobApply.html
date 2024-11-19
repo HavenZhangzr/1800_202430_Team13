@@ -45,9 +45,9 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <div class="container mt-4">
-        <h2>Responsive Web Design - Assessment</h2>
+        <h2>Ongoing Assessment</h2>
         <form class="mt-4">
-            <div id ="multipleChoiceQuestions">
+            <div id="multipleChoiceQuestions">
                 <h4>Multiple Choice Questions</h4>
                 <template id="multipleChoiceTemp">
                     <div class="card mb-4 rounded-lg">
@@ -74,8 +74,9 @@
                     </div>
                 </template>
             </div>
-            <div id ="shortAnswerQuestions">
-                <!-- <h4>Short Answer Questions</h4> -->
+
+            <!-- Short Answer Questions -->
+            <div id="shortAnswerQuestions">
                 <template id="shortAnswerTemp">
                     <div class="form-group mb-3">
                         <label for="sa1"></label>
@@ -84,9 +85,42 @@
                     </div>
                 </template>
             </div>
-            <button type="submit" class="btn btn-success mt-2">Submit</button>
+
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Resume
+            </button>
+
+            <!-- Modal -->
+            <form id="submitResume">
+                <div id="resumeSubmission">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Upload Resume</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Upload your resume here (links only).</p>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="inputPassword4" placeholder="Resume" name="resume">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-success mt-3">Submit</button>
         </form>
     </div>
+
 
     <!-- Footer goes here-->
     <nav id="footerPlaceholder"></nav>
