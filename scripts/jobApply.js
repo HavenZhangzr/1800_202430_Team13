@@ -97,6 +97,7 @@ function submitAssessment(e) {
 
     const multipleChoiceAnswers = {}; // Prevent default form submission behavior
     const shortAnswerAnswers = {};
+    let resumeLink = "";
 
     // Collect multiple-choice answers
     const mcQuestions = document.querySelectorAll('#multipleChoiceQuestions .card');
@@ -121,6 +122,12 @@ function submitAssessment(e) {
         }
     });
 
+    // Collect resume response
+    const resumeInput = document.querySelector('#inputPassword4');
+    if (resumeInput) {
+        resumeLink = resumeInput.value.trim();
+    }
+
     // Save answers to Firestore under the current user's collection
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -130,6 +137,7 @@ function submitAssessment(e) {
                 assessmentTitle: assessmentTitle,
                 multipleChoiceAnswers: multipleChoiceAnswers,
                 shortAnswerAnswers: shortAnswerAnswers,
+                resumeLink: resumeLink,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
             })
                 .then(() => {
