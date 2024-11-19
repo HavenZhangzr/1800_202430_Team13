@@ -59,7 +59,7 @@ function loadProfileData() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             console.log('User is logged in');
-            const userDocRef = db.collection("profiles").doc(user.uid);
+            const userDocRef = db.collection("users").doc(user.uid);
             userDocRef.get().then(function(doc) {
                 if (doc.exists) {
                     // If the document exists, load the data and display it on the page
@@ -105,15 +105,14 @@ function saveProfileData(event) {
     // Check if the user is logged in
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            const userDocRef = db.collection("profiles").doc(user.uid);
+            const userDocRef = db.collection("users").doc(user.uid);
 
             // Check if the document exists
             userDocRef.get().then(function(doc) {
                 if (doc.exists) {
                     // If the document exists, perform an update operation
                     userDocRef.update({
-                        firstName: document.getElementById("firstName").value,
-                        lastName: document.getElementById("lastName").value,
+                        name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
                         username: document.getElementById("username").value,
                         email: document.getElementById("email").value,
                         dialingCode: document.getElementById("dialingCode").value,
@@ -136,8 +135,7 @@ function saveProfileData(event) {
                 } else {
                     // If the document does not exist, perform a create operation
                     userDocRef.set({
-                        firstName: document.getElementById("firstName").value,
-                        lastName: document.getElementById("lastName").value,
+                        name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
                         username: document.getElementById("username").value,
                         email: document.getElementById("email").value,
                         dialingCode: document.getElementById("dialingCode").value,
