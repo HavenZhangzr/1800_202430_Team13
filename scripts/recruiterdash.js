@@ -1,56 +1,54 @@
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { db } from './firebaseAPI.js';
-
-
 // Reference to the form
 const form = document.getElementById('assessmentsubmission');
-const jobinput = document.getElementById('hardcoded');
-
+const questionsContainer = document.getElementById('questionsContainer');
+const questionTemplate = document.getElementById('questionTemplate');
 
 // Add event listener to the form
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
     e.preventDefault(); 
 
     // Capture values from the form fields
-    const role = form.role.value;
-    const company = form.company.value;
-    const team = form.team.value;
-    const question = form.question.value;
-    const solution = form.solution.value;
-    const ends = form.ends.value;
+    const role = form.role ? form.role.value : '';
+    const company = form.company ? form.company.value : '';
+    const team = form.team ? form.team.value : '';
+    const description = form.description ? form.description.value : '';
+    const ends = form.ends ? form.ends.value : '';
 
     // Add data to Firestore
-    db.collection('recruiterPostedQuestions').add({
+    db.collection("assessments").add({
         role: role,
         company: company,
         team: team,
-        question: question,
-        solution: solution,
+        description: description,
         ends: ends
-    })
-    .then(() => {
-        console.log("Data successfully submitted!");
-        form.reset(); 
-    })
-    .catch((error) => {
-        console.error("Error submitting data: ", error);
+    }).then(docRef => {
+        const assessmentId = docRef.id;
+        const questions = document.querySelectorAll('.question');
+        questions.forEach((question, index) => {
+            const questionText = question.querySelector('.question-text').value;
+            const answerChoices = question.querySelectorAll('.answer-choice');
+            const correctAnswers = question.querySelectorAll('.correct-answer');
+            let answers = [];
+            let correct = [];
+            answerChoices.forEach((choice, i) => {
+                answers.push(choice.value);
+                if (correctAnswers[i].checked) {
+                    correct.push(choice.value);
+                }
+            });
+            db.collection("assessments").doc(assessmentId).collection("questions").add({
+                question: questionText,
+                answers: answers,
+                correct: correct
+            });
+        });
     });
+
+    alert("Your assessment has been submitted!");
 });
 
-jobinput.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    
-    const userinput = jobinput.elements.hardcodedquestion.value;
-
-    db.collection('useranswers').add({
-        answer: userinput, 
-    })
-    .then(() => {
-        console.log("Data successfully submitted!");
-        jobinput.reset(); 
-    })
-    .catch((error) => {
-        console.error("Error submitting data: ", error);
-    });
+// Add event listener to the "Add Question" button
+document.getElementById('addQuestionBtn').addEventListener('click', () => {
+    const newQuestion = questionTemplate.content.cloneNode(true);
+    questionsContainer.appendChild(newQuestion);
 });

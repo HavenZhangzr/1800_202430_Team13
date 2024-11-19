@@ -44,7 +44,6 @@
             background-image: url("./images/thirdCard.png");
             background-size: cover;
         }
-
     </style>
     <link rel="stylesheet" href="./styles/style.css">
 
@@ -54,7 +53,7 @@
 
     <!------------------------------>
     <!-- Your HTML Layout go here -->
-    
+
     <!-- Navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
@@ -65,17 +64,18 @@
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add a posting
+                    Add a posting
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">New Posting</h5>
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -84,47 +84,103 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label for="inputEmail4">Role</label>
-                                            <input type="text" class="form-control" id="inputEmail4" placeholder="Role" name="role">
+                                            <input type="text" class="form-control" id="inputEmail4" placeholder="Role"
+                                                name="role">
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword4">Company</label>
-                                            <input type="text" class="form-control" id="inputPassword4" placeholder="Company" name="company">
+                                            <input type="text" class="form-control" id="inputPassword4"
+                                                placeholder="Company" name="company">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAddress">Team/Department</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="eg. Marketing" name="team">
+                                        <input type="text" class="form-control" id="inputAddress"
+                                            placeholder="eg. Marketing" name="team">
+                                    </div>
+                                    <div>
+                                        <label for="inputAddress2">Job Description</label>
+                                        <textarea class="form-control" id="inputAddress2"
+                                            placeholder="Enter job description here." name="description"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputAddress2">Assessment Question</label>
-                                        <input type="text" class="form-control" id="inputAddress2" placeholder="Enter assessment question here." name="question">
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="inputCity">Assessment Solution</label>
-                                            <input type="text" class="form-control" id="inputCity" placeholder="Answer to your assessment." name="solution">
+                                        <div id="questionsContainer">
+                                            <template id="questionTemplate">
+                                                <div class="question">
+                                                    <div class="form-group">
+                                                        <hr>
+                                                        
+                                                        <label>Question</label>
+                                                        <textarea type="text" class="form-control question-text"
+                                                            placeholder="Enter question"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Answer Choices</label>
+                                                        <div class="input-group mb-2">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <input type="checkbox" class="correct-answer">
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control answer-choice"
+                                                                placeholder="Enter answer choice">
+                                                        </div>
+                                                        <div class="input-group mb-2">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <input type="checkbox" class="correct-answer">
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control answer-choice"
+                                                                placeholder="Enter answer choice">
+                                                        </div>
+                                                        <div class="input-group mb-2">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <input type="checkbox" class="correct-answer">
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control answer-choice"
+                                                                placeholder="Enter answer choice">
+                                                        </div>
+                                                        <div class="input-group mb-2">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <input type="checkbox" class="correct-answer">
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control answer-choice"
+                                                                placeholder="Enter answer choice">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </template>
                                         </div>
+                                        <button type="button" class="btn btn-secondary" id="addQuestionBtn">Add
+                                            Question</button>
                                     </div>
-                                    
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
 
                             </div>
-                            
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                            </form>
+
                         </div>
+
                     </div>
                 </div>
-                
             </div>
 
         </div>
+
+    </div>
     </div>
 
-    
-    
+
+
     <!-- Footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
@@ -139,11 +195,11 @@
     <!-- Link to scripts of your own. -->
     <!-- <script src="./scripts/script.js"></script> -->
     <!-- Firebase UI -->
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script> 
-    <script type="module" src="./scripts/firebaseAPI.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
+    <script src="./scripts/firebaseAPI.js"></script>
+    <script src="./scripts/recruiterdash.js"></script>
     <script src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/recruiterdash.js"></script>
-    
+
 </body>
 
 </html>
