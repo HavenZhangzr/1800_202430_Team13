@@ -9,3 +9,5 @@ function logout() {
       // An error happened.
     });
 }
+
+document.getElementById("logout").addEventListener("click", logout);
