@@ -73,7 +73,7 @@ function displayCardsDynamically(collection) {
                 var assessmentDocID = doc.id;
                 var title = doc.data().role;
                 var description = doc.data().description;
-                var details = "Company: " + doc.data().company + "<br>Role: " + doc.data().role + "<br>Team: " + doc.data().team + "<br>Description: " + doc.data().description;
+                var details = "<b>Company:</b> " + doc.data().company + "<br><b>Role:</b> " + doc.data().role + "<br><b>Team:</b> " + doc.data().team + "<br><b>Description:</b> " + doc.data().description;
 
                 // var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
@@ -84,10 +84,17 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-details').innerHTML = details;
                 newcard.querySelector('a').href = "applicationView.html" + "?docID=" + assessmentDocID + "&title=" + title;
 
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+                // Add delete button functionality
+                newcard.querySelector('.btn-delete').addEventListener('click', () => {
+                    if (confirm("Are you sure you want to delete this assessment?")) {
+                        db.collection("assessments").doc(assessmentDocID).delete().then(() => {
+                            alert("Assessment deleted successfully!");
+                            location.reload(); // Reload the page to reflect the changes
+                        }).catch(error => {
+                            console.error("Error deleting assessment: ", error);
+                        });
+                    }
+                });
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById("assessmentList").appendChild(newcard);
