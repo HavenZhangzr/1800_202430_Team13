@@ -33,6 +33,7 @@
 
 </head>
 
+
 <body>
 
     <!------------------------------>
@@ -41,28 +42,21 @@
     <!-- Navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-    <!-- Footer goes here-->
-    <nav id="footerPlaceholder"></nav>
-
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-    <div class="container-fluid bg-light text-dark p-5">
-        <div class="container bg-light p-5">
-            <h1 class="display-4">Thanks <span id="name-goes-here"></span>!</h1>
-            <hr>
-            <h2>Your answers have been saved.</h2>
+    <div class="container mt-4">
+        <h2>View Applications</h2>
+        <div class="form-group">
+            <label for="userSelect">Select User</label>
+            <select class="form-control" id="userSelect">
+                <option value="">Select a user</option>
+            </select>
+        </div>
+        <div id="userResponses" class="mt-4">
+            <!-- User responses will be displayed here -->
         </div>
     </div>
-    <div class="d-flex gap-2 justify-content-center py-5">
-        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="window.location.href = './main.html';">
-            Home
-        </button>
-        <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button" onclick="window.location.href = './jobPostings.html';">
-            Job Postings
-        </button>
 
-
-    </div>
+    <!-- Footer goes here-->
+    <nav id="footerPlaceholder"></nav>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -70,12 +64,12 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
-
+    
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/assessment_completed.js"></script>
-
+    <script src="./scripts/applicationView.js"></script>
+    
 </body>
 
 </html>

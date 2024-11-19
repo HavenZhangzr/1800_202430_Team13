@@ -5,7 +5,7 @@ const questionTemplate = document.getElementById('questionTemplate');
 
 // Add event listener to the form
 form.addEventListener("submit", (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     // Capture values from the form fields
     const role = form.role ? form.role.value : '';
@@ -39,7 +39,7 @@ form.addEventListener("submit", (e) => {
             db.collection("assessments").doc(assessmentId).collection("questions").add({
                 question: questionText,
                 answers: answers,
-                correct: correct, 
+                correct: correct,
                 questionType: "multiple-choice",
                 isMultipleChoice: true
             });
@@ -52,7 +52,7 @@ form.addEventListener("submit", (e) => {
         alert("Assessment created successfully!");
     });
 
-    
+
 
 });
 
@@ -61,3 +61,103 @@ document.getElementById('addQuestionBtn').addEventListener('click', () => {
     const newQuestion = questionTemplate.content.cloneNode(true);
     questionsContainer.appendChild(newQuestion);
 });
+
+
+function displayCardsDynamically(collection) {
+    let cardTemplate = document.getElementById("assessmentTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+
+    db.collection(collection).get()   //the collection called 
+        .then(allAssessments => {
+            // var i = 1;  //Optional: if you want to have a unique ID
+            allAssessments.forEach(doc => { //iterate thru each doc
+                var assessmentDocID = doc.id;
+                var title = doc.data().role;
+                var description = doc.data().description;
+                var details = "Company: " + doc.data().company + "<br>Role: " + doc.data().role + "<br>Team: " + doc.data().team + "<br>Description: " + doc.data().description;
+
+                // var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
+                let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+
+                //update title and text and image
+                newcard.querySelector('.card-title').innerHTML = title;
+                newcard.querySelector('.card-description').innerHTML = description;
+                newcard.querySelector('.card-details').innerHTML = details;
+                newcard.querySelector('a').href = "applicationView.html" + "?docID=" + assessmentDocID + "&title=" + title;
+
+                //Optional: give unique ids to all elements for future use
+                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+
+                //attach to gallery, Example: "hikes-go-here"
+                document.getElementById("assessmentList").appendChild(newcard);
+
+                //i++;   //Optional: iterate variable to serve as unique ID
+            })
+        })
+}
+
+displayCardsDynamically("assessments")
+
+
+
+
+
+// test function to create a couple job postings
+function createPostings() {
+    db.collection("assessments").add({
+        role: "Software Engineer",
+        company: "Google",
+        team: "Search",
+        description: "We are looking for a software engineer to join our Search team.",
+        ends: "2021-12-31"
+    }).then(docRef => {
+        const assessmentId = docRef.id;
+        db.collection("assessments").doc(assessmentId).collection("questions").add({
+            question: "What is the capital of France?",
+            answers: ["Paris", "London", "Berlin", "Madrid"],
+            correct: ["Paris"],
+            questionType: "multiple-choice",
+            isMultipleChoice: true
+        });
+        db.collection("assessments").doc(assessmentId).collection("questions").add({
+            question: "What is the capital of Germany?",
+            answers: ["Paris", "London", "Berlin", "Madrid"],
+            correct: ["Berlin"],
+            questionType: "multiple-choice",
+            isMultipleChoice: true
+        });
+        db.collection("assessments").doc(assessmentId).collection("questions").add({
+            question: "What is the capital of Spain?",
+            answers: ["Paris", "London", "Berlin", "Madrid"],
+            correct: ["Madrid"],
+            questionType: "multiple-choice",
+            isMultipleChoice: true
+        });
+    });
+
+    db.collection("assessments").add({
+        role: "Product Manager",
+        company: "Facebook",
+        team: "Messenger",
+        description: "We are looking for a product manager to join our Messenger team.",
+        ends: "2021-12-31"
+    }).then(docRef => {
+        const assessmentId = docRef.id;
+        db.collection("assessments").doc(assessmentId).collection("questions").add({
+            question: "What is the capital of France?",
+            answers: ["Paris", "London", "Berlin", "Madrid"],
+            correct: ["Paris"],
+            questionType: "multiple-choice",
+            isMultipleChoice: true
+        });
+        db.collection("assessments").doc(assessmentId).collection("questions").add({
+            question: "What is the capital of Germany?",
+            answers: ["Paris", "London", "Berlin", "Madrid"],
+            correct: ["Berlin"],
+            questionType: "multiple-choice",
+            isMultipleChoice: true
+        });
+
+    });
+}

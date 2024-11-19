@@ -58,6 +58,7 @@ function getAssementContent(assessmentDocID) {
                     const radioButtons = newCard.querySelectorAll('.form-check');
                     radioButtons.forEach((radioButton, index) => {
                         radioButton.querySelector('input').name = uniqueName;
+                        radioButton.querySelector('input').value = options[index]; // Set the value to the actual option text
                         radioButton.querySelector('label').textContent = `${String.fromCharCode(65 + index)}. ${options[index]}`;
                     });
                     // Save question document ID in the UI for reference
@@ -104,7 +105,7 @@ function submitAssessment(e) {
         if (selectedOption) {
             const lbl_questionsDocID = question.querySelector('.mul_QuestionsDocID');
             const questionsDocID = lbl_questionsDocID.textContent;
-            multipleChoiceAnswers[questionsDocID] = selectedOption.value;
+            multipleChoiceAnswers[questionsDocID] = selectedOption.value; // Store the actual option text
         }
     });
 
