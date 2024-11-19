@@ -31,6 +31,7 @@ let assessmentTitle = params.searchParams.get("title");
  * param assessmentDocID - Document ID of the assessment.
  */
 function getAssementContent(assessmentDocID) {
+
     // Reference templates for multiple-choice and short-answer questions.
     const cardTemplateMultipleChoice = document.getElementById("multipleChoiceTemp");
     const cardTemplateShortAnswer = document.getElementById("shortAnswerTemp");
@@ -40,15 +41,15 @@ function getAssementContent(assessmentDocID) {
         .then(allQuestions => {
             allQuestions.forEach(doc => {
                 const data = doc.data(); // Read question data
-                const questionType = data.type; // Type of question: 'multiple-choice' or 'short-answer'
+                const isMultipleChoice = data.isMultipleChoice;
                 const questionText = data.question; // The actual question text
-                const options = data.options; // Options for multiple-choice questions (if applicable)
+                const options = data.answers; // Options for multiple-choice questions (if applicable)
                 const uniqueName = `q_${doc.id}`; // Unique name for inputs based on question ID
 
                 let newCard;
 
                 // Handle multiple-choice questions
-                if (questionType === 'multiple-choice') {
+                if (isMultipleChoice) {
                     // Clone the multiple-choice template
                     newCard = cardTemplateMultipleChoice.content.cloneNode(true);
                     newCard.querySelector('.card-title').textContent = questionText;
@@ -63,7 +64,7 @@ function getAssementContent(assessmentDocID) {
                     newCard.querySelector('.mul_QuestionsDocID').textContent = doc.id;
                     // Append the populated card to the multiple-choice section
                     document.getElementById('multipleChoiceQuestions').appendChild(newCard);
-                } else if (questionType === 'short-answer') {
+                } else {
                     // Handle short-answer questions
                     newCard = cardTemplateShortAnswer.content.cloneNode(true);
                     newCard.querySelector('label').textContent = questionText;
@@ -122,8 +123,8 @@ function submitAssessment(e) {
     // Save answers to Firestore under the current user's collection
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            const currentUser = db.collection("users").doc(user.uid);
-            currentUser.collection('answers').add({
+            const saveLocation = db.collection("assessments").doc(assessmentDocID);
+            saveLocation.collection('responses').doc(user.uid).set({
                 assessmentDocID: assessmentDocID,
                 assessmentTitle: assessmentTitle,
                 multipleChoiceAnswers: multipleChoiceAnswers,
