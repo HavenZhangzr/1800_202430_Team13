@@ -1,6 +1,10 @@
 //points to the document of the user who is logged in
 var currentUser;
 
+/**
+ * Populate user information by listening to authentication state changes.
+ * This function identifies the signed-in user and points to their Firestore document.
+ */
 function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
@@ -14,49 +18,63 @@ function populateUserInfo() {
     });
 }
 
-//call the function to run it 
+// Call the function to initialize user information.
 populateUserInfo();
 
+// Extract parameters from the current URL to get assessment details.
 let params = new URL(window.location.href) //get the url from the search bar
 let assessmentDocID = params.searchParams.get("docID");
 let assessmentTitle = params.searchParams.get("title");
 
+/**
+ * Fetch and display questions for a given assessment.
+ * param assessmentDocID - Document ID of the assessment.
+ */
 function getAssementContent(assessmentDocID) {
+    // Reference templates for multiple-choice and short-answer questions.
     const cardTemplateMultipleChoice = document.getElementById("multipleChoiceTemp");
     const cardTemplateShortAnswer = document.getElementById("shortAnswerTemp");
 
+    // Fetch questions from the Firestore collection of the specified assessment.
     db.collection('assessments').doc(assessmentDocID).collection('questions').get()
         .then(allQuestions => {
             allQuestions.forEach(doc => {
-                const data = doc.data();
-                const questionType = data.type;
-                const questionText = data.question;
-                const options = data.options;
-                const uniqueName = `q_${doc.id}`;
+                const data = doc.data(); // Read question data
+                const questionType = data.type; // Type of question: 'multiple-choice' or 'short-answer'
+                const questionText = data.question; // The actual question text
+                const options = data.options; // Options for multiple-choice questions (if applicable)
+                const uniqueName = `q_${doc.id}`; // Unique name for inputs based on question ID
 
                 let newCard;
 
+                // Handle multiple-choice questions
                 if (questionType === 'multiple-choice') {
+                    // Clone the multiple-choice template
                     newCard = cardTemplateMultipleChoice.content.cloneNode(true);
                     newCard.querySelector('.card-title').textContent = questionText;
+
+                    // Update radio button options dynamically
                     const radioButtons = newCard.querySelectorAll('.form-check');
                     radioButtons.forEach((radioButton, index) => {
                         radioButton.querySelector('input').name = uniqueName;
                         radioButton.querySelector('label').textContent = `${String.fromCharCode(65 + index)}. ${options[index]}`;
                     });
+                    // Save question document ID in the UI for reference
                     newCard.querySelector('.mul_QuestionsDocID').textContent = doc.id;
-
+                    // Append the populated card to the multiple-choice section
                     document.getElementById('multipleChoiceQuestions').appendChild(newCard);
                 } else if (questionType === 'short-answer') {
-
+                    // Handle short-answer questions
                     newCard = cardTemplateShortAnswer.content.cloneNode(true);
                     newCard.querySelector('label').textContent = questionText;
 
+                    // Configure the text area
                     const textArea = newCard.querySelector('textarea');
                     textArea.setAttribute('name', `q${doc.id}`);
                     textArea.classList.add('short-answer-question');
                     newCard.querySelector('.short_QuestionsDocID').textContent = doc.id;
 
+                    // Append the populated card to the short-answer section
                     document.getElementById('shortAnswerQuestions').appendChild(newCard);
                 }
             });
@@ -66,14 +84,19 @@ function getAssementContent(assessmentDocID) {
         });
 }
 
+// Call the function to fetch and display assessment questions.
 getAssementContent(assessmentDocID);
 
+/**
+ * Submit the assessment answers to Firestore.
+ */
 function submitAssessment(e) {
     e.preventDefault();
 
-    const multipleChoiceAnswers = {};
+    const multipleChoiceAnswers = {}; // Prevent default form submission behavior
     const shortAnswerAnswers = {};
 
+    // Collect multiple-choice answers
     const mcQuestions = document.querySelectorAll('#multipleChoiceQuestions .card');
     mcQuestions.forEach((question, index) => {
         const selectedOption = question.querySelector('input[type="radio"]:checked');
@@ -84,6 +107,7 @@ function submitAssessment(e) {
         }
     });
 
+    // Collect short-answer responses
     const shortAnswerQuestions = document.querySelectorAll('#shortAnswerQuestions .form-group');
     shortAnswerQuestions.forEach((question, index) => {
         const textArea = question.querySelector('textarea');
@@ -95,6 +119,7 @@ function submitAssessment(e) {
         }
     });
 
+    // Save answers to Firestore under the current user's collection
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             const currentUser = db.collection("users").doc(user.uid);
@@ -107,6 +132,7 @@ function submitAssessment(e) {
             })
                 .then(() => {
                     console.log("Answers successfully saved!");
+                    window.location.href = "assessment_completed.html";
                 })
                 .catch(error => {
                     console.error("Error saving answers: ", error);
@@ -117,97 +143,7 @@ function submitAssessment(e) {
     });
 }
 
+// Attach the submit handler to the form when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("form").addEventListener("submit", submitAssessment);
 });
-
-// writeQuestion template
-// function writeQuestion() {
-//     const assessmentRef = db.collection('assessments').doc('3AdAyGkGtPdjCKh3tocY');
-//     const questionsRef = assessmentRef.collection('questions');
-//     // multiple choice
-//     const multipleChoiceQuestions = [
-//         {
-//             question: 'What does "responsive web design" mean?',
-//             options: ['Websites are designed to fit any screen size.', 'Websites are designed only for mobile screens.', 'Websites can only be accessed on desktop computers.', 'Websites use more media queries.'],
-//             answer: 'Websites are designed to fit any screen size.'
-//         },
-//         {
-//             question: 'Which CSS property is most commonly used for making a website responsive?',
-//             options: ['display', 'flex', 'width', 'media queries'],
-//             answer: 'media queries'
-//         },
-//         {
-//             question: 'What is a media query in CSS?',
-//             options: ['A query used to ask about the style of a page.', 'A CSS rule that applies styles based on device characteristics.', 'A JavaScript function used to detect screen size.', 'A type of selector used for responsive design.'],
-//             answer: 'A CSS rule that applies styles based on device characteristics.'
-//         },
-//         {
-//             question: 'Which of the following is NOT a benefit of responsive design?',
-//             options: ['Mobile-first design', 'Improved SEO rankings', 'More design flexibility', 'Limited device support'],
-//             answer: 'Limited device support'
-//         },
-//         {
-//             question: 'Which property is used to control the layout in responsive design?',
-//             options: ['padding', 'flexbox', 'box-sizing', 'overflow'],
-//             answer: 'flexbox'
-//         },
-//         {
-//             question: 'Which of the following is a best practice for creating a responsive layout?',
-//             options: ['Use fixed widths for all elements.', 'Avoid using flexbox.', 'Use relative units like % or vw for width and height.', 'Make images fixed size for better control.'],
-//             answer: 'Use relative units like % or vw for width and height.'
-//         },
-//         {
-//             question: 'How do media queries work in responsive web design?',
-//             options: ['They apply styles only when the screen width is greater than a specific value.', 'They apply styles based on device screen size or resolution.', 'They are used to detect the user’s location.', 'They change the font size of the page based on user input.'],
-//             answer: 'They apply styles based on device screen size or resolution.'
-//         },
-//         {
-//             question: 'Which viewport meta tag is essential for responsive web design?',
-//             options: ['<meta name="viewport" content="width=device-width, initial-scale=1.0">', '<meta name="viewport" content="width=100%, initial-scale=1.0">', '<meta name="viewport" content="scale=1">', '<meta name="viewport" content="auto-width=1">'],
-//             answer: '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
-//         },
-//         {
-//             question: 'What does the term "mobile-first design" refer to?',
-//             options: ['Designing websites with mobile screens as the priority, then scaling up for desktops.', 'Designing websites for desktop screens first, then adapting for mobile.', 'Designing websites that only work on mobile devices.', 'Designing websites without using media queries.'],
-//             answer: 'Designing websites with mobile screens as the priority, then scaling up for desktops.'
-//         },
-//         {
-//             question: 'Which CSS property helps with responsiveness in images?',
-//             options: ['max-width', 'width', 'height', 'border'],
-//             answer: 'max-width'
-//         }
-//     ];
-
-//     // Add multiple choice to Firebase
-//     multipleChoiceQuestions.forEach((question) => {
-//         questionsRef.add({
-//             type: 'multiple-choice',
-//             question: question.question,
-//             options: question.options,
-//             answer: question.answer
-//         });
-//     });
-
-//     // free-write
-//     const shortAnswerQuestions = [
-//         {
-//             question: 'Explain the concept of "mobile-first design" in responsive web design.'
-//         },
-//         {
-//             question: 'Why is it important to use relative units like percentages or viewport widths (vw) in responsive design?'
-//         },
-//         {
-//             question: 'How does the "flexbox" layout help in making a website responsive?'
-//         }
-//     ];
-
-//     // Add free-write to Firebase
-//     shortAnswerQuestions.forEach((question) => {
-//         questionsRef.add({
-//             type: 'short-answer',
-//             question: question.question
-//         });
-//     });
-// }
-// writeQuestion();
