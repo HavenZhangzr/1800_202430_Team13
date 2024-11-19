@@ -64,8 +64,10 @@ function loadProfileData() {
                 if (doc.exists) {
                     // If the document exists, load the data and display it on the page
                     const profileData = doc.data();
-                    document.getElementById("firstName").value = profileData.firstName || '';
-                    document.getElementById("lastName").value = profileData.lastName || '';
+                    const fullName = profileData.name;
+                    const [firstName, lastName] = fullName.split(" ");
+                    document.getElementById("firstName").value = firstName || '';
+                    document.getElementById("lastName").value = lastName || '';
                     document.getElementById("username").value = profileData.username || '';
                     document.getElementById("email").value = profileData.email || '';
                     document.getElementById("dialingCode").value = profileData.dialingCode || '';
