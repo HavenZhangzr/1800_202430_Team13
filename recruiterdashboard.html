@@ -63,7 +63,7 @@
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add a posting
+                    Create New Job Posting
                 </button>
 
                 <!-- Modal -->
@@ -180,7 +180,8 @@
 
 
     <div class="container mt-4">
-        <h3>Your Existing Job Posings:</h3>
+        <h3>Current Job Posings:</h3>
+        <hr>
 
         <div class="container d-flex flex-column align-items-center justify-content-center mt-4">
             <div id="assessmentList"> <!--Replace with template!!!-->
@@ -190,15 +191,16 @@
     </div>
 
     <template id="assessmentTemplate">
-        <div class="card w-75 mb-3 rounded-lg">
+        <div class="card w-75 mb-3 rounded-lg mx-auto">
             <div class="card-body">
                 <h5 class="card-title text-primary-emphasis fs-5 card-title">Beautiful title</h5>
                 <p class="card-text text-secondary-emphasis fs-6 card-description">Amazing and in-depth description!</p>
                 <p class="card-text text-secondary card-details" style="font-size: 13px;">Difficulty Level: Advanced
                     Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
-                    <button class="btn btn-danger btn-delete">Delete</button>
-                    <a href="#" class="btn btn-success" data-assessment-id="{{assessmentDocID}}">View Applications</a>
+                <button class="btn btn-danger btn-delete">Delete</button>
+                <a href="#" class="btn btn-success" data-assessment-id="{{assessmentDocID}}">View Applications</a>
             </div>
+        </div>
         </div>
     </template>
 
