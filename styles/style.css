@@ -112,17 +112,7 @@ body {
     font-weight:lighter;
     color: #676b6e;
 }
-.startNow {
-    display: inline-block;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background: linear-gradient(90deg, red, orange, yellow, green, blue, purple);
-    background-size: 400% 400%;
-    animation: gradient-move 3s infinite;
-}
+
 @keyframes gradient-move {
     0% {
         background-position: 0% 50%;
