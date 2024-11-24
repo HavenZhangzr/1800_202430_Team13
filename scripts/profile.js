@@ -68,15 +68,15 @@ function loadProfileData() {
                     const [firstName, lastName] = fullName.split(" ");
                     document.getElementById("firstName").value = firstName || '';
                     document.getElementById("lastName").value = lastName || '';
-                    document.getElementById("username").value = profileData.username || '';
+                    // document.getElementById("username").value = profileData.username || '';
                     document.getElementById("email").value = profileData.email || '';
-                    document.getElementById("dialingCode").value = profileData.dialingCode || '';
-                    document.getElementById("phoneNumber").value = profileData.phoneNumber || '';
-                    document.getElementById("country").value = profileData.country || '';
-                    document.getElementById("address").value = profileData.address || '';
-                    document.getElementById("address2").value = profileData.address2 || '';
-                    document.getElementById("city").value = profileData.city || '';
-                    document.getElementById("zip").value = profileData.zip || '';
+                    // document.getElementById("dialingCode").value = profileData.dialingCode || '';
+                    // document.getElementById("phoneNumber").value = profileData.phoneNumber || '';
+                    // document.getElementById("country").value = profileData.country || '';
+                    // document.getElementById("address").value = profileData.address || '';
+                    // document.getElementById("address2").value = profileData.address2 || '';
+                    // document.getElementById("city").value = profileData.city || '';
+                    // document.getElementById("zip").value = profileData.zip || '';
 
                     console.log("Profile data loaded successfully.");
                 } else {
@@ -103,6 +103,10 @@ function saveProfileData(event) {
 
     // Get the feedback element
     const feedbackElement = document.getElementById("feedback");
+
+    // put a loading animation into the feedback element
+    feedbackElement.textContent = "Saving profile...";
+    feedbackElement.style.color = "black";
     
     // Check if the user is logged in
     firebase.auth().onAuthStateChanged(function(user) {
@@ -115,18 +119,18 @@ function saveProfileData(event) {
                     // If the document exists, perform an update operation
                     userDocRef.update({
                         name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
-                        username: document.getElementById("username").value,
+                        // username: document.getElementById("username").value,
                         email: document.getElementById("email").value,
-                        dialingCode: document.getElementById("dialingCode").value,
-                        phoneNumber: document.getElementById("phoneNumber").value,
-                        country: document.getElementById("country").value,
-                        address: document.getElementById("address").value,
-                        address2: document.getElementById("address2").value,
-                        city: document.getElementById("city").value,
-                        zip: document.getElementById("zip").value
+                        // dialingCode: document.getElementById("dialingCode").value,
+                        // phoneNumber: document.getElementById("phoneNumber").value,
+                        // country: document.getElementById("country").value,
+                        // address: document.getElementById("address").value,
+                        // address2: document.getElementById("address2").value,
+                        // city: document.getElementById("city").value,
+                        // zip: document.getElementById("zip").value
                     })
                     .then(function() {
-                        feedbackElement.textContent = "Profile updated successfully."; // Feedback message
+                        feedbackElement.textContent = "Profile updated successfully!"; // Feedback message
                         feedbackElement.style.color = "green"; // Green for success
                     })
                     .catch(function(error) {
@@ -138,15 +142,15 @@ function saveProfileData(event) {
                     // If the document does not exist, perform a create operation
                     userDocRef.set({
                         name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
-                        username: document.getElementById("username").value,
+                        // username: document.getElementById("username").value,
                         email: document.getElementById("email").value,
-                        dialingCode: document.getElementById("dialingCode").value,
-                        phoneNumber: document.getElementById("phoneNumber").value,
-                        country: document.getElementById("country").value,
-                        address: document.getElementById("address").value,
-                        address2: document.getElementById("address2").value,
-                        city: document.getElementById("city").value,
-                        zip: document.getElementById("zip").value
+                        // dialingCode: document.getElementById("dialingCode").value,
+                        // phoneNumber: document.getElementById("phoneNumber").value,
+                        // country: document.getElementById("country").value,
+                        // address: document.getElementById("address").value,
+                        // address2: document.getElementById("address2").value,
+                        // city: document.getElementById("city").value,
+                        // zip: document.getElementById("zip").value
                     })
                     .then(function() {
                         feedbackElement.textContent = "Profile saved successfully."; // Feedback message
