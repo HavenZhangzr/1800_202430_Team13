@@ -4,7 +4,7 @@ var redirectURL;
 
 var uiConfig = {
     callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+        signInSuccessWithAuthResult: async function (authResult, redirectUrl) {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
@@ -17,46 +17,46 @@ var uiConfig = {
             // The Firestore rules must allow the user to write. 
             //------------------------------------------------------------------------------------------
             var user = authResult.user;                            // get the user object from the Firebase authentication database
-            if (authResult.additionalUserInfo.isNewUser) {         //if new user
-                db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
-                    name: user.displayName,                    //"users" collection
-                    email: user.email,                         //with authenticated user's ID (user.uid)
-                    date_created: firebase.firestore.FieldValue.serverTimestamp() 
-                }).then(function () {
-                    console.log("New user added to firestore");
-                    redirectURL = "before_account_type.html";
-                    window.location.assign(redirectURL);       //re-direct to before_account_type.html after signup
-                }).catch(function (error) {
-                    console.log("Error adding new user: " + error);
-                });
-            } else if(doc.data().isRecruiter == true){ // checks if user is a recruiter and sends to recruiter dashboard
-                redirectURL = "recruiterdashboard.html";
-                window.location.assign(redirectURL);
-                return true;
+            if (authResult.additionalUserInfo.isNewUser) {
+                // Add new user to Firestore
+                try {
+                    await db.collection("users").doc(user.uid).set({
+                        name: user.displayName,
+                        email: user.email,
+                        date_created: firebase.firestore.FieldValue.serverTimestamp(),
+                    });
+                    console.log("New user added to Firestore.");
+                    window.location.assign("before_account_type.html");
+                } catch (error) {
+                    console.log("Error adding new user:", error);
+                }
             } else {
-                redirectURL = "dashboard.html"; // sends user to the regular dashboard if not
-                window.location.assign(redirectURL);
-                return true;
+                // Check user role
+                try {
+                    const doc = await db.collection("users").doc(user.uid).get();
+                    if (doc.exists) {
+                        const userData = doc.data();
+                        if (userData.isRecruiter) {
+                            window.location.assign("recruiterdashboard.html");
+                        } else {
+                            window.location.assign("dashboard.html");
+                        }
+                    } else {
+                        console.log("User document not found.");
+                    }
+                } catch (error) {
+                    console.log("Error retrieving user document:", error);
+                }
             }
-            return false;
-        }
+            return false; // Prevent automatic redirection
+        },
     },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: redirectURL,
     signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
-    // Terms of service url.
     tosUrl: '<your-tos-url>',
-    // Privacy policy url.
-    privacyPolicyUrl: '<your-privacy-policy-url>'
+    privacyPolicyUrl: '<your-privacy-policy-url>',
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);
