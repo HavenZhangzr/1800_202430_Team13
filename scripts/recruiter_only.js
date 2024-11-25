@@ -11,7 +11,7 @@ function checkIfRecruiter() {
                 if (doc.exists) {
                     if (doc.data().isRecruiter === false) {
                         console.log("User is not a recruiter.");
-                        window.location.href = "main.html";
+                        window.location.href = "dashboard.html";
                     }
                 } else {
                     console.log("No such document!");

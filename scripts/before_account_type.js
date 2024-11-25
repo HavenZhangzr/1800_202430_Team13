@@ -42,12 +42,12 @@ function updateIsRecruiter(isRecruiter) {
 
 document.getElementById("jobSeekerBtn").addEventListener("click", function() {
     updateIsRecruiter(false).then(() => {
-        window.location.href = "main.html";
+        window.location.href = "dashboard.html";
     });
 });
 
 document.getElementById("recruiterBtn").addEventListener("click", function() {
     updateIsRecruiter(true).then(() => {
-        window.location.href = "main.html";
+        window.location.href = "recruiterdashboard.html";
     });
 });

@@ -25,12 +25,16 @@ var uiConfig = {
                 }).then(function () {
                     console.log("New user added to firestore");
                     redirectURL = "before_account_type.html";
-                    window.location.assign(redirectURL);       //re-direct to main.html after signup
+                    window.location.assign(redirectURL);       //re-direct to before_account_type.html after signup
                 }).catch(function (error) {
                     console.log("Error adding new user: " + error);
                 });
+            } else if(doc.data().isRecruiter == true){ // checks if user is a recruiter and sends to recruiter dashboard
+                redirectURL = "recruiterdashboard.html";
+                window.location.assign(redirectURL);
+                return true;
             } else {
-                redirectURL = "main.html";
+                redirectURL = "dashboard.html"; // sends user to the regular dashboard if not
                 window.location.assign(redirectURL);
                 return true;
             }
