@@ -3,6 +3,10 @@ const form = document.getElementById('assessmentsubmission');
 const questionsContainer = document.getElementById('questionsContainer');
 const questionTemplate = document.getElementById('questionTemplate');
 
+// Create a default question field
+questionsContainer.appendChild(questionTemplate.content.cloneNode(true));
+checkIfDeleteShouldBeDisabled();
+
 // Add event listener to the form
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -56,11 +60,40 @@ form.addEventListener("submit", (e) => {
 
 });
 
-// Add event listener to the "Add Question" button
 document.getElementById('addQuestionBtn').addEventListener('click', () => {
     const newQuestion = questionTemplate.content.cloneNode(true);
     questionsContainer.appendChild(newQuestion);
+    checkIfDeleteShouldBeDisabled();
 });
+
+document.getElementById('deleteQuestionBtn').addEventListener('click', () => {
+
+    if (!confirm(`Are you sure you want to delete this question?`)) {
+        return;
+    }
+
+    const questions = document.querySelectorAll('.question');
+    if (questions.length > 1) {
+        questions[questions.length - 1].remove();
+
+        questionsContainer.removeChild(questionsContainer.lastChild);
+        
+    }
+
+    checkIfDeleteShouldBeDisabled();
+});
+
+
+function checkIfDeleteShouldBeDisabled() {
+    const questions = document.querySelectorAll('.question');
+    if (questions.length === 1) {
+        document.getElementById('deleteQuestionBtn').disabled = true;
+    } else {
+        document.getElementById('deleteQuestionBtn').disabled = false;
+    }
+}
+
+
 
 
 function displayCardsDynamically(collection) {
@@ -98,6 +131,7 @@ function displayCardsDynamically(collection) {
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById("assessmentList").appendChild(newcard);
+                checkIfDeleteShouldBeDisabled();
 
                 //i++;   //Optional: iterate variable to serve as unique ID
             })

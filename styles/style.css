@@ -15,9 +15,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Monsieur+La+Doulaise&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-body, .navbar-brand {
-    font-family: 'Satoshi', 'Open Sans',sans-serif;
-    /* background-color: #F7F8FD; */
+body {
+    font-family: 'Satoshi', 'Open Sans', sans-serif;
+    background: 
+        radial-gradient(
+            circle at center,
+            #FFFFFF 50%,
+            rgba(235, 248, 240, 0.7) 100%,
+            rgba(220, 240, 240, 1) 100%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(235, 248, 240, 0.7) 0%,
+            rgba(220, 240, 240, 1) 100%
+        );
+    height: 100vh;
+    margin: 0;
 }
 .card {
     transition: background-color 0.3s, box-shadow 0.3s;
@@ -26,9 +39,7 @@ body, .navbar-brand {
     background-color: rgba(0, 123, 255, 0.1);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
-.navbar{
-    height: 40px;
-}
+
 .navbar-brand {
     margin-right: 8px;
 }
@@ -98,4 +109,13 @@ body, .navbar-brand {
     font-size: 18px;
     font-weight:lighter;
     color: #676b6e;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
