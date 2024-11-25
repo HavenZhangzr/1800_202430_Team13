@@ -4,7 +4,7 @@
 This is a browser based platform which allows job-seekers and employers to match for open roles more efficiently.
 
 ## 2. Names of Contributors
-List team members and/or short bio's here... 
+List team members and/or short bios here... 
 * Hi my name is Haven.
 * Szymon Zemojtel
 * Kavin Kadam.
@@ -14,26 +14,26 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * HTML, CSS, JavaScript
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
-* ...
+* GitHub (version control)
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
-* ...
+* Clone repository
+* Live serve the index.html
+* Navigate freely using the navbar
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* ...
+* TBD
 * ...
 * ...
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+* A search function to search through roles
+* A recommendation algorithm
+* A filter mechanism
 	
 ## 7. Contents of Folder
 Content of the project folder:
