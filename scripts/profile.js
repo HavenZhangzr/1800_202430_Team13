@@ -103,10 +103,6 @@ function saveProfileData(event) {
 
     // Get the feedback element
     const feedbackElement = document.getElementById("feedback");
-
-    // put a loading animation into the feedback element
-    feedbackElement.textContent = "Saving profile...";
-    feedbackElement.style.color = "black";
     
     // Check if the user is logged in
     firebase.auth().onAuthStateChanged(function(user) {
@@ -130,12 +126,10 @@ function saveProfileData(event) {
                         // zip: document.getElementById("zip").value
                     })
                     .then(function() {
-                        feedbackElement.textContent = "Profile updated successfully!"; // Feedback message
-                        feedbackElement.style.color = "green"; // Green for success
+                        Swal.fire("Success!", "Your profile has been saved.", "success");
                     })
                     .catch(function(error) {
-                        feedbackElement.textContent = "Error updating profile: " + error.message; // Feedback message
-                        feedbackElement.style.color = "red"; // Red for error
+                        Swal.fire("Error!", "There was an error saving your profile: " + error.message, "error");
                         console.error("Error updating profile: ", error);
                     });
                 } else {
@@ -153,12 +147,11 @@ function saveProfileData(event) {
                         // zip: document.getElementById("zip").value
                     })
                     .then(function() {
-                        feedbackElement.textContent = "Profile saved successfully."; // Feedback message
-                        feedbackElement.style.color = "green"; // Green for success
+                        // Show a success message using Swal
+                        Swal.fire("Success!", "Your profile has been saved.", "success");
                     })
                     .catch(function(error) {
-                        feedbackElement.textContent = "Error saving profile: " + error.message; // Feedback message
-                        feedbackElement.style.color = "red"; // Red for error
+                        Swal.fire("Error!", "There was an error saving your profile: " + error.message, "error");
                         console.error("Error saving profile: ", error);
                     });
                 }
