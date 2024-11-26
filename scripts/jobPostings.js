@@ -8,7 +8,7 @@ function displayCardsDynamically(collection) {
                 var assessmentDocID = doc.id;
                 var title = doc.data().role;
                 var description = doc.data().description;
-                var details = "Company: " + doc.data().company + "<br>Role: " + doc.data().role + "<br>Team: " + doc.data().team + "<br>Description: " + doc.data().description;
+                var details = "<b>Company: </b>" + doc.data().company + "<br><b>Role: </b>" + doc.data().role + "<br><b>Team: </b>" + doc.data().team + "<br><b>Description: </b>" + doc.data().description;
                 
                 // var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
