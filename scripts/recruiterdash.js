@@ -24,7 +24,8 @@ form.addEventListener("submit", (e) => {
         company: company,
         team: team,
         description: description,
-        ends: ends
+        ends: ends,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(docRef => {
         const assessmentId = docRef.id;
         const questions = document.querySelectorAll('.question');
@@ -49,15 +50,36 @@ form.addEventListener("submit", (e) => {
             });
         });
 
+        // Use SweetAlert to show success message
+        Swal.fire({
+            title: 'Success!',
+            text: 'New job posting created successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            // Close the modal after success
+            const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            modal.hide(); // Hide the modal
+
+            // Optionally, reload the page or update content dynamically
+            location.reload(); // Refresh the page to display new content
+        });
+
         // clear form fields
         form.reset();
         questionsContainer.innerHTML = '';
 
-        alert("Assessment created successfully!");
+        // alert("Assessment created successfully!");
+    }).catch(error => {
+        // Handle errors
+        console.error("Error creating assessment: ", error);
+        Swal.fire({
+            title: 'Error!',
+            text: 'Oops! Something went wrong while creating your job posting.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     });
-
-
-
 });
 
 document.getElementById('addQuestionBtn').addEventListener('click', () => {
@@ -67,20 +89,25 @@ document.getElementById('addQuestionBtn').addEventListener('click', () => {
 });
 
 document.getElementById('deleteQuestionBtn').addEventListener('click', () => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete this question?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const questions = document.querySelectorAll('.question');
+            if (questions.length > 1) {
+                questions[questions.length - 1].remove();
+                questionsContainer.removeChild(questionsContainer.lastChild);
+            }
+            checkIfDeleteShouldBeDisabled();
 
-    if (!confirm(`Are you sure you want to delete this question?`)) {
-        return;
-    }
-
-    const questions = document.querySelectorAll('.question');
-    if (questions.length > 1) {
-        questions[questions.length - 1].remove();
-
-        questionsContainer.removeChild(questionsContainer.lastChild);
-        
-    }
-
-    checkIfDeleteShouldBeDisabled();
+            Swal.fire('Deleted!', 'Your question has been deleted.', 'success');
+        }
+    });
 });
 
 
@@ -94,12 +121,12 @@ function checkIfDeleteShouldBeDisabled() {
 }
 
 
-
-
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("assessmentTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
-    db.collection(collection).get()   //the collection called 
+    db.collection(collection)
+        .orderBy("timestamp", "desc")
+        .get()   //the collection called 
         .then(allAssessments => {
             // var i = 1;  //Optional: if you want to have a unique ID
             allAssessments.forEach(doc => { //iterate thru each doc
@@ -119,14 +146,32 @@ function displayCardsDynamically(collection) {
 
                 // Add delete button functionality
                 newcard.querySelector('.btn-delete').addEventListener('click', () => {
-                    if (confirm("Are you sure you want to delete this assessment?")) {
-                        db.collection("assessments").doc(assessmentDocID).delete().then(() => {
-                            alert("Assessment deleted successfully!");
-                            location.reload(); // Reload the page to reflect the changes
-                        }).catch(error => {
-                            console.error("Error deleting assessment: ", error);
-                        });
-                    }
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'Do you want to delete this posting?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            db.collection("assessments").doc(assessmentDocID).delete().then(() => {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'The posting has been deleted successfully.',
+                                    'success'
+                                );
+                                location.reload(); // Reload the page to reflect the changes
+                            }).catch(error => {
+                                console.error("Error deleting posting: ", error);
+                                Swal.fire(
+                                    'Error!',
+                                    'There was an issue deleting the posting.',
+                                    'error'
+                                );
+                            });
+                        }
+                    });
                 });
 
                 //attach to gallery, Example: "hikes-go-here"
