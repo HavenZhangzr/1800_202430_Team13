@@ -5,7 +5,12 @@ const questionTemplate = document.getElementById('questionTemplate');
 
 // Create a default question field
 questionsContainer.appendChild(questionTemplate.content.cloneNode(true));
-checkIfDeleteShouldBeDisabled();
+// Attach delete button listener to the default question
+const defaultDeleteButton = questionsContainer.lastElementChild.querySelector('.delete-question-btn');
+if (defaultDeleteButton) {
+    attachDeleteListener(defaultDeleteButton);
+}
+// checkIfDeleteShouldBeDisabled();
 
 // Add event listener to the form
 form.addEventListener("submit", (e) => {
@@ -82,44 +87,70 @@ form.addEventListener("submit", (e) => {
     });
 });
 
+document.getElementById('createAssessmenttn').addEventListener('click', () => {
+    const assessmentForm = document.getElementById('assessmentForm');
+    // Make the form visible
+    assessmentForm.style.display = 'block';
+});
+
 document.getElementById('addQuestionBtn').addEventListener('click', () => {
     const newQuestion = questionTemplate.content.cloneNode(true);
     questionsContainer.appendChild(newQuestion);
-    checkIfDeleteShouldBeDisabled();
+    // checkIfDeleteShouldBeDisabled();
+
+    // Find the delete button in the newly added question and attach an event listener
+    // Locate the most recently added content (added to the DOM)
+    const latestQuestion = questionsContainer.lastElementChild; // Get the last child element
+    // Find the delete button in the most recently added content
+    const deleteButton = latestQuestion.querySelector('.delete-question-btn');
+    console.log("Delete Button:", deleteButton);
+    attachDeleteListener(deleteButton);
 });
 
-document.getElementById('deleteQuestionBtn').addEventListener('click', () => {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'Do you want to delete this question?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const questions = document.querySelectorAll('.question');
-            if (questions.length > 1) {
-                questions[questions.length - 1].remove();
-                questionsContainer.removeChild(questionsContainer.lastChild);
-            }
-            checkIfDeleteShouldBeDisabled();
-
-            Swal.fire('Deleted!', 'Your question has been deleted.', 'success');
+// Function for attaching delete functionality
+function attachDeleteListener(deleteButton) {
+    deleteButton.addEventListener('click', (event) => {
+        // Find the entire card wrapper (e.g., the full question card)
+        const cardElement = event.target.closest('.card'); // `.card` is the outer container of the question
+        if (cardElement) {
+            cardElement.remove(); // Remove the entire card
+        } else {
+            console.warn("Card element not found for delete action");
         }
     });
-});
-
-
-function checkIfDeleteShouldBeDisabled() {
-    const questions = document.querySelectorAll('.question');
-    if (questions.length === 1) {
-        document.getElementById('deleteQuestionBtn').disabled = true;
-    } else {
-        document.getElementById('deleteQuestionBtn').disabled = false;
-    }
 }
 
+// document.getElementById('deleteQuestionBtn').addEventListener('click', () => {
+//     Swal.fire({
+//         title: 'Are you sure?',
+//         text: 'Do you want to delete this question?',
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: 'Yes, delete it!',
+//         cancelButtonText: 'Cancel'
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             const questions = document.querySelectorAll('.question');
+//             if (questions.length > 1) {
+//                 questions[questions.length - 1].remove();
+//                 questionsContainer.removeChild(questionsContainer.lastChild);
+//             }
+//             // checkIfDeleteShouldBeDisabled();
+
+//             Swal.fire('Deleted!', 'Your question has been deleted.', 'success');
+//         }
+//     });
+// });
+
+
+// function checkIfDeleteShouldBeDisabled() {
+//     const questions = document.querySelectorAll('.question');
+//     if (questions.length === 1) {
+//         document.getElementById('deleteQuestionBtn').disabled = true;
+//     } else {
+//         document.getElementById('deleteQuestionBtn').disabled = false;
+//     }
+// }
 
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("assessmentTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
@@ -176,18 +207,14 @@ function displayCardsDynamically(collection) {
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById("assessmentList").appendChild(newcard);
-                checkIfDeleteShouldBeDisabled();
+                // checkIfDeleteShouldBeDisabled();
 
                 //i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 }
 
-displayCardsDynamically("assessments")
-
-
-
-
+displayCardsDynamically("assessments");
 
 // test function to create a couple job postings
 function createPostings() {
@@ -247,3 +274,6 @@ function createPostings() {
 
     });
 }
+
+
+
