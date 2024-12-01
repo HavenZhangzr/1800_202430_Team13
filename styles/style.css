@@ -32,6 +32,7 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .card {
     transition: background-color 0.3s, box-shadow 0.3s;
 }
