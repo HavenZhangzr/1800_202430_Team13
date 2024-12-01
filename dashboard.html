@@ -24,7 +24,10 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-
+    
+    <!-- This script is used to display the time since a post. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
     <!-- Other libraries go here -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,37 +50,32 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">You currently have no entries.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-primary btn-lg px-4" onclick="location.href='jobPostings.html'">Get Started!</button>
+                <button type="button" class="btn btn-primary btn-lg px-4" onclick="location.href='jobPostings.html'">Get
+                    Started!</button>
             </div>
         </div>
     </div>
 
     <div class="card text-center">
         <div class="card-header display-3">Featured</div>
-        <div class="card-group">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">AWS</h5>
-                <p class="card-text">Software Engineer II - Alexa AI</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">Google</h5>
-                <p class="card-text">Software Engineering Manager - Gemini</p>
-                <p class="card-text"><small class="text-muted">NEW Assessment</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">HubSpot</h5>
-                <p class="card-text">(Remote) QA Engineer</p>
-                <p class="card-text"><small class="text-muted">1 day ago</small></p>
-                </div>
-            </div>
+        <div class="card-group" id="featuredJobs">
+            <!-- This will automatically be filled in from firestore using the template :) -->
         </div>
     </div>
+
+    <template id="postingTemplate">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">HubSpot</h5>
+                <p class="card-text">(Remote) QA Engineer</p>
+
+                <p class="card-text-small"><small class="text-muted">1 day ago</small></p>
+                <a href="#" class="btn btn-success" onclick="saveAssesmentDocumentIDAndRedirect()">Apply Now</a>
+
+            </div>
+      
+        </div>
+    </template>
 
     <!-- Footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -92,12 +90,13 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
-    
+
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/mustBeSignedIn.js"></script>
+    <script src="./scripts/dashboard.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
-    
+
 </body>
 
 </html>

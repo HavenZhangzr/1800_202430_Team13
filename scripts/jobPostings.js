@@ -33,4 +33,3 @@ function displayCardsDynamically(collection) {
 
 displayCardsDynamically("assessments");  //input param is the name of the collection
 
-console.log("assessmentsList.js loaded"); // Log a message to the console to indicate that this script was loaded.
