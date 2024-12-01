@@ -91,6 +91,8 @@ document.getElementById('createAssessmenttn').addEventListener('click', () => {
     const assessmentForm = document.getElementById('assessmentForm');
     // Make the form visible
     assessmentForm.style.display = 'block';
+    // Hide the button
+    document.getElementById('createAssessmenttn').style.display = 'none';
 });
 
 document.getElementById('addQuestionBtn').addEventListener('click', () => {
@@ -178,8 +180,8 @@ function displayCardsDynamically(collection) {
                 // Add delete button functionality
                 newcard.querySelector('.btn-delete').addEventListener('click', () => {
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: 'Do you want to delete this posting?',
+                        title: 'Delete <b>' + title + '</b?>?',
+                        text: 'This cannot be undone.',
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonText: 'Yes, delete it!',
@@ -274,6 +276,8 @@ function createPostings() {
 
     });
 }
+
+
 
 
 
