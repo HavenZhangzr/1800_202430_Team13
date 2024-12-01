@@ -45,9 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (userDoc.exists) {
                             const userName = userDoc.data().name;
                             const userEmail = userDoc.data().email;
+                            // reusme link is in the same collection as the multiple choice asnwers
+
+                            const userResumeLink = data.resumeLink;
                             userResponses.innerHTML = `
                                 <h4>Responses for ${userName}</h4>
                                 <h5>Email: ${userEmail}</h5>
+                                <a href="${userResumeLink}" target="_blank" class="btn btn-primary">View Resume</a>
+                                <br> <br>
+                                <h3> Question Responses </h3>
+                                <hr> 
                             `;
 
                             // Fetch questions and display responses
