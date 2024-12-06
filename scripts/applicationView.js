@@ -1,7 +1,4 @@
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const userSelect = document.getElementById('userSelect');
     const userResponses = document.getElementById('userResponses');
     const params = new URLSearchParams(window.location.search);
@@ -34,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Fetch and display user responses when a user is selected
-    userSelect.addEventListener('change', function() {
+    userSelect.addEventListener('change', function () {
         const userID = userSelect.value;
         if (userID) {
             db.collection('assessments').doc(assessmentDocID).collection('responses').doc(userID).get().then(doc => {
@@ -45,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (userDoc.exists) {
                             const userName = userDoc.data().name;
                             const userEmail = userDoc.data().email;
+                            
                             // reusme link is in the same collection as the multiple choice asnwers
-
                             const userResumeLink = data.resumeLink;
                             userResponses.innerHTML = `
                                 <h4>Responses for ${userName}</h4>

@@ -43,12 +43,6 @@ db.collection("assessments").orderBy("timestamp", "desc").limit(3).get()
         console.log("Error getting documents: ", error);
     });
 
-
-
-
-
-
-
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         const userID = user.uid;
@@ -75,6 +69,7 @@ function getApplicationsForJob(UID) {
 
     return applications;
 }
+
 function displayCardsDynamically(collection, userID) {
     let cardTemplate = document.getElementById("applicationTemplate"); // Retrieve the HTML element with the ID "assessmentTemplate" and store it in the cardTemplate variable. 
 
@@ -140,8 +135,5 @@ function displayCardsDynamically(collection, userID) {
             });
         });
 }
-
-
-
 
 

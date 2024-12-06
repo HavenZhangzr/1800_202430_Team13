@@ -1,6 +1,5 @@
 async function loadPhoneCodes() {
     try {
-
         const response = await fetch('https://restcountries.com/v3.1/all');
         let countries = await response.json();
 
@@ -8,7 +7,6 @@ async function loadPhoneCodes() {
         countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
         const phoneDropdown = document.getElementById('dialingCode');
-
         countries.forEach(country => {
             if (country.idd && country.idd.root) { // Ensure the country has a dialing code
                 const option = document.createElement('option');
@@ -36,7 +34,6 @@ async function loadCountries() {
         countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
         
         const dropdown = document.getElementById('country');
-
         countries.forEach(country => {
             const option = document.createElement('option');
             option.value = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : '');
@@ -169,16 +166,7 @@ function saveProfileData(event) {
     });
 }
 
-
 // Wait for the page to load, then bind the submit event
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector("form").addEventListener("submit", saveProfileData);
 });
-
-
-
-
-
-
-
-

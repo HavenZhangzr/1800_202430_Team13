@@ -1,7 +1,6 @@
 // this script redirects job-seeker accounts away from recruiter-only pages
 
 // get account type from firestore
-
 function checkIfRecruiter() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -19,11 +18,7 @@ function checkIfRecruiter() {
             }).catch(function (error) {
                 console.log("Error getting document:", error);
             });
-            
-
         }
-
-        
     });
 }
 

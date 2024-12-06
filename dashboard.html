@@ -24,10 +24,10 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    
+
     <!-- This script is used to display the time since a post. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    
+
     <!-- Other libraries go here -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,12 +47,12 @@
 
     <div class="px-4 py-5 my-5 text-center">
         <h1 class="display-4">Hello <span id="name-goes-here"></span>!</h1>
-
         <h1 class="display-1 fw-bold text-body-emphasis text-secondary">Your Dashboard</h1>
         <div class="col-lg-6 mx-auto">
-            <!-- <p class="lead mb-4">You currently have no entries.</p> -->
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-primary btn-lg px-4 shadow-lg" onclick="location.href='jobPostings.html'">Find Positions!</button>            </div>
+                <button type="button" class="btn btn-primary btn-lg px-4 shadow-lg"
+                    onclick="location.href='jobPostings.html'">Find Positions!</button>
+            </div>
         </div>
     </div>
 
@@ -68,26 +68,21 @@
             <div class="card-body">
                 <h5 class="card-title">HubSpot</h5>
                 <p class="card-text">(Remote) QA Engineer</p>
-
                 <p class="card-text-small"><small class="text-muted">1 day ago</small></p>
                 <a href="#" class="btn btn-success" onclick="saveAssesmentDocumentIDAndRedirect()">Apply Now</a>
             </div>
         </div>
     </template>
 
-
-
     <div class="container mt-4">
         <h3>Your Most-Recent Applications</h3>
         <hr>
-
         <div class="container d-flex flex-column align-items-center justify-content-center mt-4">
-            <div id="assessmentList"> <!--Replace with template!!!-->
-
+            <div id="assessmentList">
             </div>
-            <a href="applicationHistory.html" class="btn btn-secondary">View Full Application History</a>    </div>
-
+            <a href="applicationHistory.html" class="btn btn-secondary">View Full Application History</a>
         </div>
+    </div>
 
     <template id="applicationTemplate">
         <div class="card w-75 mb-3 rounded-lg mx-auto">
@@ -97,43 +92,30 @@
                     Estimated, Duration: 60 minutes, Success Rate:97.7%</p>
                 <div class="mt-3">
                     <a href="#" class="btn btn-primary" target="_blank">View Your Resume</a>
-
-                    <a class="btn btn-secondary view-questions-button" type="button" data-bs-toggle="collapse" data-bs-target="#questionsCollapse">View Questions</a>
+                    <a class="btn btn-secondary view-questions-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#questionsCollapse">View Questions</a>
                     <div id="questionsCollapse" class="collapse mt-2">
-                        
-                            <ul class="list-group questions-list">
-                                <!-- Questions and answers will be dynamically inserted here -->
-                            </ul>
-                        
+                        <ul class="list-group questions-list">
+                            <!-- Questions and answers will be dynamically inserted here -->
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </template>
-
-
-
-
     <!-- Footer goes here-->
     <nav id="footerPlaceholder"></nav>
-
-    <!------------------------------>
-    <!-- Stuff for body goes here -->
-
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
-
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/mustBeSignedIn.js"></script>
     <script src="./scripts/dashboard.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
-
 </body>
 
 </html>

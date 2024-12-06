@@ -10,7 +10,6 @@ const defaultDeleteButton = questionsContainer.lastElementChild.querySelector('.
 if (defaultDeleteButton) {
     attachDeleteListener(defaultDeleteButton);
 }
-// checkIfDeleteShouldBeDisabled();
 
 // Add event listener to the form
 form.addEventListener("submit", (e) => {
@@ -74,7 +73,6 @@ form.addEventListener("submit", (e) => {
         form.reset();
         questionsContainer.innerHTML = '';
 
-        // alert("Assessment created successfully!");
     }).catch(error => {
         // Handle errors
         console.error("Error creating assessment: ", error);
@@ -98,7 +96,6 @@ document.getElementById('createAssessmenttn').addEventListener('click', () => {
 document.getElementById('addQuestionBtn').addEventListener('click', () => {
     const newQuestion = questionTemplate.content.cloneNode(true);
     questionsContainer.appendChild(newQuestion);
-    // checkIfDeleteShouldBeDisabled();
 
     // Find the delete button in the newly added question and attach an event listener
     // Locate the most recently added content (added to the DOM)
@@ -122,38 +119,6 @@ function attachDeleteListener(deleteButton) {
     });
 }
 
-// document.getElementById('deleteQuestionBtn').addEventListener('click', () => {
-//     Swal.fire({
-//         title: 'Are you sure?',
-//         text: 'Do you want to delete this question?',
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonText: 'Yes, delete it!',
-//         cancelButtonText: 'Cancel'
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             const questions = document.querySelectorAll('.question');
-//             if (questions.length > 1) {
-//                 questions[questions.length - 1].remove();
-//                 questionsContainer.removeChild(questionsContainer.lastChild);
-//             }
-//             // checkIfDeleteShouldBeDisabled();
-
-//             Swal.fire('Deleted!', 'Your question has been deleted.', 'success');
-//         }
-//     });
-// });
-
-
-// function checkIfDeleteShouldBeDisabled() {
-//     const questions = document.querySelectorAll('.question');
-//     if (questions.length === 1) {
-//         document.getElementById('deleteQuestionBtn').disabled = true;
-//     } else {
-//         document.getElementById('deleteQuestionBtn').disabled = false;
-//     }
-// }
-
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("assessmentTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
@@ -161,14 +126,12 @@ function displayCardsDynamically(collection) {
         .orderBy("timestamp", "desc")
         .get()   //the collection called 
         .then(allAssessments => {
-            // var i = 1;  //Optional: if you want to have a unique ID
             allAssessments.forEach(doc => { //iterate thru each doc
                 var assessmentDocID = doc.id;
                 var title = doc.data().role;
                 var description = doc.data().description;
                 var details = "<b>Company:</b> " + doc.data().company + "<br><b>Role:</b> " + doc.data().role + "<br><b>Team:</b> " + doc.data().team + "<br><b>Description:</b> " + doc.data().description;
 
-                // var hikeCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 //update title and text and image
@@ -209,9 +172,6 @@ function displayCardsDynamically(collection) {
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById("assessmentList").appendChild(newcard);
-                // checkIfDeleteShouldBeDisabled();
-
-                //i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 }

@@ -21,7 +21,7 @@ function getApplicationsForJob(UID) {
             })
         })
     })
-    
+
     return applications;
 }
 
@@ -42,8 +42,6 @@ function displayCardsDynamically(collection, userID) {
                             var title = jobPosting.role; // Accessing the parent document's data
                             var details = "<b>Company:</b> " + jobPosting.company + "<br><b>Role:</b> " + jobPosting.role + "<br><b>Team:</b> " + jobPosting.team + "<br><b>Description:</b> " + jobPosting.description;
                             var resumeLink = application.resumeLink;
-
-
                             let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                             //update title and text and image
@@ -53,10 +51,9 @@ function displayCardsDynamically(collection, userID) {
 
                             //change the questionscollapse id to be unique
                             newcard.querySelector('.collapse').id = "questionsCollapse" + doc.id;
-                            
+
                             // udpate the open question dropdown button to be unique
                             newcard.querySelector('.view-questions-button').setAttribute("data-bs-target", "#questionsCollapse" + doc.id);
-                            
 
                             // Fetch and display questions and answers
                             const questionsList = newcard.querySelector('.questions-list');

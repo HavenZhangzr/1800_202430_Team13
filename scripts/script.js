@@ -24,12 +24,10 @@ function logout() {
         window.location.href = "index.html";
       }
 
-
     }).catch((error) => {
       // An error happened.
     });
 }
-
 
 function insertNameFromFirestore() {
   // Check if the user is logged in:
@@ -41,7 +39,6 @@ function insertNameFromFirestore() {
               // Get the user name
               let userName = userDoc.data().name;
               console.log(userName);
-              //$("#name-goes-here").text(userName); // jQuery
               document.getElementById("name-goes-here").innerText = userName;
               document.getElementById("name-goes-here-hike").innerText = userName;
           })

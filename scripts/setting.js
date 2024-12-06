@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', loadSettingsData);
 // Load settings data
 function loadSettingsData() {
     console.log("loadSettingsData");
-    
+
     // Check if the user is logged in
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             const settingsDocRef = db.collection("settings").doc(user.uid); // Get the settings data for the user
 
             // Get the settings document from Firestore
-            settingsDocRef.get().then(function(doc) {
+            settingsDocRef.get().then(function (doc) {
                 if (doc.exists) {
                     const settingsData = doc.data(); // Get the settings data
                     // Populate the form fields with the settings data
@@ -80,7 +80,7 @@ function loadSettingsData() {
                 } else {
                     console.log("No settings found. You can save new settings.");
                 }
-            }).catch(function(error) {
+            }).catch(function (error) {
                 console.error("Error loading settings: ", error); // Log error to the console
             });
         } else {

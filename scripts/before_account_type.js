@@ -17,8 +17,6 @@ function updateIsRecruiter(isRecruiter) {
                             return;
                         }
                     }
-
-
                     userRef.update({
                         isRecruiter: isRecruiter
                     }).then(() => {
@@ -29,7 +27,6 @@ function updateIsRecruiter(isRecruiter) {
                         reject(error);
                     });   
                 });
-
             } else {
                 console.log("No user is logged in.");
                 reject("No user is logged in.");
@@ -37,8 +34,6 @@ function updateIsRecruiter(isRecruiter) {
         });
     });
 }
-
-
 
 document.getElementById("jobSeekerBtn").addEventListener("click", function() {
     updateIsRecruiter(false).then(() => {
