@@ -5,7 +5,7 @@ This is a browser based platform which allows job-seekers and employers to match
 
 ## 2. Names of Contributors
 List team members and/or short bios here... 
-* Hi my name is Haven.
+* Haven Zhang.
 * Szymon Zemojtel
 * Kavin Kadam.
 	
@@ -25,9 +25,7 @@ Here are the steps ...
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* TBD
-* ...
-* ...
+* None at the moment.
 
 ## 6. Features for Future
 What we'd like to build in the future:
@@ -45,13 +43,24 @@ Content of the project folder:
 └── README.md
 
 It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /blah.js                 # 
-├── styles                   # Folder for styles
-    /blah.css                # 
+├── .deprecated               # Folder for deprecated files
+├── .git                      # Folder for git repo
+├── images                    # Folder for image assets
+    ├── favicon.webp          # Displayed in the browser tab as the favicon
+    ├── firstCard.png         # Displayed on the homepage as the first card image
+    ├── tailwindLogo.png      # The logo used throughout the site
+    ├── thirdCard.png         # Displayed on the homepage as the third card image
+├── scripts                            # Contains JS files matching the names of HTML files (e.g., jobApply.js for jobApply.html)
+├── styles                             # Folder for styles
+    /style.css                         # Stylesheet for all pages
+├── text                               # Folder for reusable components
+    ├── footer.html                    # Shared footer for all pages
+    ├── nav_before_login.html          # Shared navbar(before login) for all pages
+    ├── nav_JOB_SEEKER.html            # Shared navbar for job seekers
+    ├── nav_loading.html               # Shared navbar when loading
+    ├── nav_RECRUITER.html             # Shared navbar for recruiter
+
+
 
 
 
